@@ -3,206 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Art of Loving - Raisa Qadarina</title>
+    <title>The Art of Loving — Raisa Qadarina</title>
     <style>
         @import url('https://googleapis.com');
 
         :root {
-            --bg-canvas: #e0d0cc;
-            --paper-cream: #fbf6f0;
-            --pink-muted: #e2a1ae;
-            --purple-shadow: #b299a6;
-            --ink-dark: #2a1b1f;
+            --bg-analog: #dfd4ca;
+            --paper-vintage: #fbf6f0;
+            --ink-black: #1e1517;
+            --pink- halftone: #e5a4b1;
+            --purple-faded: #b69ca9;
         }
 
         * { box-sizing: border-box; }
 
         body {
             font-family: 'Courier Prime', 'Courier New', monospace;
-            background-color: var(--bg-canvas);
-            color: var(--ink-dark);
+            background-color: var(--bg-analog);
+            color: var(--ink-black);
             margin: 0; padding: 0;
             display: flex; justify-content: center; align-items: center;
             min-height: 100vh; overflow-x: hidden; position: relative;
         }
 
-        /* ----- 1. PREMIUM NOISE GRAIN OVERLAY (Tekstur Cetak Koran) ----- */
+        /* ----- 1. ULTRA RETRO HALFTONE & GRAIN OVERLAY ----- */
         body::before {
             content: ""; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            opacity: 0.08; pointer-events: none; z-index: 9999;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://w3.org id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+            opacity: 0.14; pointer-events: none; z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://w3.org id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        body::after {
+            content: ""; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            opacity: 0.07; pointer-events: none; z-index: 9998;
+            background-image: radial-gradient(var(--ink-black) 20%, transparent 21%);
+            background-size: 3.5px 3.5px;
         }
 
-        /* ----- 2. HUJAN SAKURA PASTEL RETRO ----- */
         #sakura-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
 
-        .container { position: relative; z-index: 2; width: 92%; max-width: 440px; margin: 40px 0; }
+        /* Teks Mengambang di Atas & Bawah Layar Berjarak (Gaya Gambar Clairo) */
+        .ambient-text-top {
+            position: absolute; top: 15px; width: 100%; display: flex; justify-content: space-around;
+            font-size: 10px; font-weight: bold; opacity: 0.5; letter-spacing: 2px; text-transform: uppercase; z-index: 2;
+        }
 
-        /* ----- 3. KARTU JURNAL PRANGKO VINTAGE (HIGH FIDELITY) ----- */
-        .vintage-journal {
-            background-color: var(--paper-cream);
-            border: 2px solid var(--ink-dark);
-            padding: 35px 25px;
-            box-shadow: 14px 14px 0px var(--purple-shadow);
+        .container { position: relative; z-index: 3; width: 92%; max-width: 440px; margin: 50px 0; }
+
+        /* ----- 2. GERIGI JURNAL PRANGKO ANALOG ----- */
+        .vintage-card {
+            background-color: var(--paper-vintage);
+            border: 2px solid var(--ink-black);
+            padding: 40px 24px;
+            box-shadow: 15px 15px 0px var(--purple-faded);
             position: relative;
             text-align: center;
-            animation: cardEntrance 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
         }
 
-        @keyframes cardEntrance {
-            0% { opacity: 0; transform: translateY(50px) scale(0.98); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        /* Efek Tepi Gerigi Tiket/Koran di Sisi Atas & Bawah */
-        .vintage-journal::before, .vintage-journal::after {
+        /* Pemotong Sisi Gerigi Lubang Tiket */
+        .vintage-card::before, .vintage-card::after {
             content: ""; position: absolute; left: 0; width: 100%; height: 12px;
             background-size: 16px 16px; pointer-events: none;
         }
-        .vintage-journal::before {
+        .vintage-card::before {
             top: -12px;
-            background-image: radial-gradient(circle at 8px -4px, transparent 8px, var(--ink-dark) 9px, var(--paper-cream) 10px);
+            background-image: radial-gradient(circle at 8px -4px, transparent 8px, var(--ink-black) 9px, var(--paper-vintage) 10px);
         }
-        .vintage-journal::after {
+        .vintage-card::after {
             bottom: -12px;
-            background-image: radial-gradient(circle at 8px 20px, transparent 8px, var(--ink-dark) 9px, var(--paper-cream) 10px);
+            background-image: radial-gradient(circle at 8px 20px, transparent 8px, var(--ink-black) 9px, var(--paper-vintage) 10px);
         }
 
-        /* Metadata Tiket Konser */
-        .ticket-meta {
-            display: flex; justify-content: space-between;
-            font-size: 10px; font-weight: bold; border-bottom: 2px solid var(--ink-dark);
-            padding-bottom: 10px; margin-bottom: 25px; letter-spacing: 0.5px;
+        /* Label Metadata Atas */
+        .ticket-header {
+            display: flex; justify-content: space-between; font-size: 10px; font-weight: 700;
+            border-bottom: 2px solid var(--ink-black); padding-bottom: 12px; margin-bottom: 30px;
         }
 
-        /* ----- 4. FRAME FOTO INSTAX POLAROID ----- */
-        .polaroid-frame {
-            background: white; padding: 12px 12px 30px 12px;
-            border: 1.5px solid var(--ink-dark); display: inline-block;
-            box-shadow: 6px 6px 0px rgba(0,0,0,0.06);
-            transform: rotate(-1.5deg); transition: transform 0.3s ease;
-            margin-bottom: 20px; position: relative;
+        /* ----- 3. BINGKAI FOTO POLAROID INDIE ----- */
+        .photo-frame {
+            background: white; padding: 12px 12px 35px 12px;
+            border: 1.5px solid var(--ink-black); display: inline-block;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.05);
+            transform: rotate(-1deg); transition: transform 0.3s ease; margin-bottom: 25px;
         }
-        .polaroid-frame:hover { transform: rotate(1deg) scale(1.02); }
-        
-        .avatar {
-            width: 170px; height: 170px; object-fit: cover;
-            border: 1.5px solid var(--ink-dark); filter: grayscale(0.2) contrast(1.1) sepia(0.1);
-        }
+        .photo-frame:hover { transform: rotate(1.5deg) scale(1.02); }
+        .avatar { width: 180px; height: 180px; object-fit: cover; border: 1.5px solid var(--ink-black); filter: grayscale(0.2) contrast(1.15) sepia(0.1); }
 
-        /* Ornamen Bunga Abstrak di Pojok Polaroid */
-        .flower-decor {
-            position: absolute; bottom: 5px; right: 12px; font-size: 14px; opacity: 0.7;
-        }
-
-        /* ----- 5. RETRO TYPOGRAPHY ----- */
+        /* ----- 4. TIPOGRAFI VINTAGE POSTER ----- */
         h1 {
             font-family: 'Georgia', serif; font-style: italic; font-weight: 400;
-            font-size: 36px; color: var(--ink-dark); margin: 0 0 5px 0;
-            letter-spacing: -0.5px;
+            font-size: 38px; color: var(--ink-black); margin: 0 0 5px 0; letter-spacing: -0.5px;
         }
         
-        .cursive-quote {
+        .cursive-sub {
             font-family: 'Georgia', serif; font-style: italic;
-            color: #9c5261; font-size: 18px; margin-bottom: 15px;
+            color: #934e5b; font-size: 17px; margin-bottom: 20px; text-transform: lowercase;
         }
 
-        .typewriter-box {
-            font-size: 11px; font-weight: bold; background-color: var(--pink-muted);
-            padding: 5px 15px; border: 1.5px solid var(--ink-dark);
-            display: inline-block; margin-bottom: 30px; letter-spacing: 0.5px;
-            text-transform: uppercase; min-height: 15px;
+        .typewriter-badge {
+            font-size: 11px; font-weight: bold; background-color: var(--pink-halftone);
+            padding: 5px 15px; border: 1.5px solid var(--ink-black); color: white;
+            display: inline-block; margin-bottom: 35px; letter-spacing: 0.5px; min-height: 15px;
         }
 
-        /* ----- 6. PEMUTAR MUSIK CD / TRACK LIST LAYOUT ----- */
-        .track-list { display: flex; flex-direction: column; gap: 8px; }
+        /* ----- 5. LAYOUT TRACK LIST CD ALBUM ----- */
+        .track-list { display: flex; flex-direction: column; gap: 10px; }
 
         .track-item {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 14px 16px; background-color: var(--paper-cream);
-            border: 1.5px solid var(--ink-dark); color: var(--ink-dark);
-            text-decoration: none; font-weight: 700; font-size: 12px;
-            transition: all 0.2s ease;
+            padding: 15px 18px; background-color: var(--paper-vintage);
+            border: 1.5px solid var(--ink-black); color: var(--ink-black);
+            text-decoration: none; font-weight: 700; font-size: 12px; transition: all 0.25s ease;
         }
 
         .track-item:hover {
-            background-color: var(--pink-muted);
-            transform: translateX(4px);
-            box-shadow: -5px 5px 0px var(--ink-dark);
+            background-color: var(--pink-halftone);
+            color: white;
+            transform: translateX(5px);
+            box-shadow: -5px 5px 0px var(--ink-black);
         }
 
-        .track-prefix { opacity: 0.5; margin-right: 10px; font-weight: normal; }
+        .track-index { opacity: 0.5; margin-right: 12px; }
 
-        /* ----- 7. BARCODE & STEMPEL PRODUK J-POP ----- */
-        .jpop-barcode-area {
-            margin-top: 35px; padding-top: 15px;
-            border-top: 1px dashed #ccc;
+        /* ----- 6. DETAIL BARCODE J-POP ----- */
+        .bottom-barcode-area {
+            margin-top: 40px; padding-top: 20px;
+            border-top: 1px dashed var(--ink-black);
             display: flex; justify-content: space-between; align-items: center;
         }
 
-        .barcode-graphic {
-            display: flex; gap: 2px; height: 25px; align-items: flex-end; opacity: 0.8;
-        }
-        .bar { background-color: var(--ink-dark); width: 2px; height: 100%; }
+        .barcode-lines { display: flex; gap: 2px; height: 28px; align-items: flex-end; opacity: 0.85; }
+        .bar { background-color: var(--ink-black); width: 2px; height: 100%; }
         .bar.thin { width: 1px; }
-        .bar.thick { width: 4px; }
+        .bar.thick { width: 4.5px; }
 
-        .stamp-credit { font-size: 9px; text-align: right; opacity: 0.6; line-height: 1.4; }
+        .stamp-credit { font-size: 9px; text-align: right; opacity: 0.6; line-height: 1.5; font-weight: bold; }
     </style>
 </head>
 <body>
 
+    <!-- Barisan Kata Renggang Latar Belakang ala Gambar Clairo -->
+    <div class="ambient-text-top">
+        <div>made by seur</div>
+        <div>7.2002</div>
+        <div>bysevr</div>
+    </div>
+
     <canvas id="sakura-canvas"></canvas>
 
     <div class="container">
-        <div class="vintage-journal">
+        <div class="vintage-card">
             
-            <!-- Atas Kupon Tiket -->
-            <div class="ticket-meta">
-                <div>MADE BY EPHIVORY</div>
-                <div>2026</div>
-                <div>ISAQDRNA</div>
+            <!-- Header Atas Kupon Tiket Klasik -->
+            <div class="ticket-header">
+                <div>OPUS NO. 12 / TKJ</div>
+                <div>★ 2026.08.23 ★</div>
+                <div>RAISA.QDRNA</div>
             </div>
 
-            <!-- Frame Foto Jurnal Potret Klasik -->
-            <div class="polaroid-frame">
+            <!-- Bingkai Foto Instax Polaroid -->
+            <div class="photo-frame">
                 <img src="me.jpg" alt="Raisa Qadarina" class="avatar">
-                <div class="flower-decor">🌸</div>
             </div>
 
-            <!-- Header Desain Musik -->
-            <h1>The Art of Loving</h1>
-            <div class="cursive-quote">she blinks in curses</div>
+            <!-- Tipografi Judul Sampul Album -->
+            <h1>She Blinks</h1>
+            <div class="cursive-sub">in curses & glitter</div>
             
-            <!-- Mesin Ketik Otomatis Kalimat Puitis Gambar Referensimu -->
-            <div class="typewriter-box" id="tw"></div>
+            <!-- Efek Ketik Jurnal Mesin Tik Otomatis -->
+            <div class="typewriter-badge" id="tw"></div>
 
-            <!-- Pemutar Track Jurnal Musik -->
             <div class="track-list">
                 <a href="https://www.linkedin.com/in/raisa-qadarina-6118b1406" target="_blank" class="track-item">
-                    <span><span class="track-prefix">02 /</span> CONNECT ON LINKEDIN</span>
+                    <span><span class="track-index">01 /</span> CONNECT ON LINKEDIN</span>
                     <span>3:15 ➔</span>
                 </a>
                 <a href="https://instagram.com/isaqdrna" target="_blank" class="track-item">
-                    <span><span class="track-prefix">03 /</span> BE MY PAL</span>
+                    <span><span class="track-index">02 /</span> BE MY PAL</span>
                     <span>2:49 ➔</span>
                 </a>
                 <a href="https://chat.whatsapp.com/Ku4OwUBBp3gAVztifM4EfP" target="_blank" class="track-item">
-                    <span><span class="track-prefix">01 /</span> STORE: ROBUX & APPS</span>
+                    <span><span class="track-index">03 /</span> STORE: ROBUX & PREM APPS</span>
                     <span>3:29 ➔</span>
+                </a>
             </div>
-
-            <!-- Bagian Bawah: Barcode Cetakan CD Jepang Original -->
-            <div class="jpop-barcode-area">
-                <div class="barcode-graphic">
+            
+            <div class="bottom-barcode-area">
+                <div class="barcode-lines">
                     <div class="bar thick"></div><div class="bar thin"></div><div class="bar"></div>
-                    <div class="bar thick"></div><div class="bar thin"></div><div class="bar"></div>
+                    <div class="bar thick"></div><div class="bar"></div><div class="bar thin"></div>
                     <div class="bar"></div><div class="bar thick"></div><div class="bar thin"></div>
                     <div class="bar thick"></div><div class="bar"></div>
                 </div>
                 <div class="stamp-credit">
-                    RAISA QADARINA • TEKNOLOGI REKAYASA MULTIMEDIA<br>
-                    HOSTED VIA GITHUB PAGES
+                    LOOK LONG ENOUGH,<br>
+                    AND YOU'LL FORGET YOUR NAME.
                 </div>
             </div>
             
@@ -210,29 +205,29 @@
     </div>
 
     <script>
-        // --- SCRIPT 1. EFEK TEXT TYPING RETRO JURNAL ---
-        const phrases = ["EACH LASH A SPELL...", "EACH GLITTERING STONE...", "A TRAPPED SCREAM.", "LOOK LONG ENOUGH...", "AND YOU'LL FORGET YOUR NAME."];
+        // --- SCRIPT 1. EFEK KETIK KATA RETRO ---
+        const lyrics = ["EACH LASH A SPELL...", "EACH GLITTERING STONE...", "A TRAPPED SCREAM.", "SHE BLINKS IN CURSES."];
         let pIdx = 0, cIdx = 0; const el = document.getElementById("tw");
         function type() {
-            if (cIdx < phrases[pIdx].length) { el.textContent += phrases[pIdx].charAt(cIdx); cIdx++; setTimeout(type, 80); } 
+            if (cIdx < lyrics[pIdx].length) { el.textContent += lyrics[pIdx].charAt(cIdx); cIdx++; setTimeout(type, 85); } 
             else { setTimeout(erase, 2200); }
         }
         function erase() {
-            if (cIdx > 0) { el.textContent = phrases[pIdx].substring(0, cIdx - 1); cIdx--; setTimeout(erase, 35); } 
-            else { pIdx = (pIdx + 1) % phrases.length; setTimeout(type, 400); }
+            if (cIdx > 0) { el.textContent = lyrics[pIdx].substring(0, cIdx - 1); cIdx--; setTimeout(erase, 35); } 
+            else { pIdx = (pIdx + 1) % lyrics.length; setTimeout(type, 400); }
         }
         setTimeout(type, 400);
 
-        // --- SCRIPT 2. ANIMASI KELOPAK SAKURA PASTEL JURNAL ---
+        // --- SCRIPT 2. ANIMASI KELOPAK SAKURA PASTEL BURAM ---
         const canvas = document.getElementById('sakura-canvas'); const ctx = canvas.getContext('2d'); let petals = [];
         function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         window.addEventListener('resize', resize); resize();
 
         class MutedPetal {
             constructor() { this.reset(); this.y = Math.random() * canvas.height; }
-            reset() { this.x = Math.random() * canvas.width; this.y = -20; this.size = Math.random() * 5 + 5; this.sy = Math.random() * 0.8 + 0.5; this.sx = Math.random() * 0.6 - 0.2; this.a = Math.random() * 360; this.sp = Math.random() * 1.0 - 0.5; }
+            reset() { this.x = Math.random() * canvas.width; this.y = -20; this.size = Math.random() * 5 + 4; this.sy = Math.random() * 0.7 + 0.5; this.sx = Math.random() * 0.5 - 0.2; this.a = Math.random() * 360; this.sp = Math.random() * 1.0 - 0.5; }
             update() { this.y += this.sy; this.x += this.sx; this.a += this.sp; if (this.y > canvas.height || this.x > canvas.width) this.reset(); }
-            draw() { ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.a * Math.PI / 180); ctx.fillStyle = '#ebd6d8'; ctx.beginPath(); ctx.ellipse(0, 0, this.size, this.size / 1.7, 0, 0, 2 * Math.PI); ctx.fill(); ctx.restore(); }
+            draw() { ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.a * Math.PI / 180); ctx.fillStyle = 'rgba(229, 164, 177, 0.35)'; ctx.beginPath(); ctx.ellipse(0, 0, this.size, this.size / 1.7, 0, 0, 2 * Math.PI); ctx.fill(); ctx.restore(); }
         }
         for (let i = 0; i < 25; i++) petals.push(new MutedPetal());
         function anim() { ctx.clearRect(0, 0, canvas.width, canvas.height); petals.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(anim); }
