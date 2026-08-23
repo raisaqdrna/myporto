@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Art of Loving — Raisa Qadarina</title>
+    <title>The Art of Dreaming — Raisa Qadarina</title>
     <style>
         @import url('https://googleapis.com');
 
@@ -11,7 +11,7 @@
             --bg-analog: #dfd4ca;
             --paper-vintage: #fbf6f0;
             --ink-black: #1e1517;
-            --pink- halftone: #e5a4b1;
+            --pink-halftone: #e5a4b1;
             --purple-faded: #b69ca9;
         }
 
@@ -23,10 +23,10 @@
             color: var(--ink-black);
             margin: 0; padding: 0;
             display: flex; justify-content: center; align-items: center;
-            min-height: 100vh; overflow-x: hidden; position: relative;
+            min-height: 100vh; overflow: hidden; position: relative;
         }
 
-        /* ----- 1. ULTRA RETRO HALFTONE & GRAIN OVERLAY ----- */
+        /* ----- RETRO HALFTONE & GRAIN OVERLAY ----- */
         body::before {
             content: ""; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             opacity: 0.14; pointer-events: none; z-index: 9999;
@@ -41,7 +41,6 @@
 
         #sakura-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
 
-        /* Teks Mengambang di Atas & Bawah Layar Berjarak (Gaya Gambar Clairo) */
         .ambient-text-top {
             position: absolute; top: 15px; width: 100%; display: flex; justify-content: space-around;
             font-size: 10px; font-weight: bold; opacity: 0.5; letter-spacing: 2px; text-transform: uppercase; z-index: 2;
@@ -49,7 +48,7 @@
 
         .container { position: relative; z-index: 3; width: 92%; max-width: 440px; margin: 50px 0; }
 
-        /* ----- 2. GERIGI JURNAL PRANGKO ANALOG ----- */
+        /* ----- GERIGI JURNAL PRANGKO ANALOG ----- */
         .vintage-card {
             background-color: var(--paper-vintage);
             border: 2px solid var(--ink-black);
@@ -59,7 +58,6 @@
             text-align: center;
         }
 
-        /* Pemotong Sisi Gerigi Lubang Tiket */
         .vintage-card::before, .vintage-card::after {
             content: ""; position: absolute; left: 0; width: 100%; height: 12px;
             background-size: 16px 16px; pointer-events: none;
@@ -73,13 +71,12 @@
             background-image: radial-gradient(circle at 8px 20px, transparent 8px, var(--ink-black) 9px, var(--paper-vintage) 10px);
         }
 
-        /* Label Metadata Atas */
         .ticket-header {
             display: flex; justify-content: space-between; font-size: 10px; font-weight: 700;
             border-bottom: 2px solid var(--ink-black); padding-bottom: 12px; margin-bottom: 30px;
         }
 
-        /* ----- 3. BINGKAI FOTO POLAROID INDIE ----- */
+        /* ----- BINGKAI FOTO POLAROID INDIE ----- */
         .photo-frame {
             background: white; padding: 12px 12px 35px 12px;
             border: 1.5px solid var(--ink-black); display: inline-block;
@@ -89,7 +86,7 @@
         .photo-frame:hover { transform: rotate(1.5deg) scale(1.02); }
         .avatar { width: 180px; height: 180px; object-fit: cover; border: 1.5px solid var(--ink-black); filter: grayscale(0.2) contrast(1.15) sepia(0.1); }
 
-        /* ----- 4. TIPOGRAFI VINTAGE POSTER ----- */
+        /* ----- TIPOGRAFI VINTAGE POSTER ----- */
         h1 {
             font-family: 'Georgia', serif; font-style: italic; font-weight: 400;
             font-size: 38px; color: var(--ink-black); margin: 0 0 5px 0; letter-spacing: -0.5px;
@@ -97,16 +94,17 @@
         
         .cursive-sub {
             font-family: 'Georgia', serif; font-style: italic;
-            color: #934e5b; font-size: 17px; margin-bottom: 20px; text-transform: lowercase;
+            color: #934e5b; font-size: 17px; margin-bottom: 20px;
         }
 
         .typewriter-badge {
             font-size: 11px; font-weight: bold; background-color: var(--pink-halftone);
             padding: 5px 15px; border: 1.5px solid var(--ink-black); color: white;
-            display: inline-block; margin-bottom: 35px; letter-spacing: 0.5px; min-height: 15px;
+            display: inline-block; margin-bottom: 35px; letter-spacing: 0.5px; min-height: 27px;
+            line-height: 15px;
         }
 
-        /* ----- 5. LAYOUT TRACK LIST CD ALBUM ----- */
+        /* ----- LAYOUT TRACK LIST CD ALBUM ----- */
         .track-list { display: flex; flex-direction: column; gap: 10px; }
 
         .track-item {
@@ -125,7 +123,7 @@
 
         .track-index { opacity: 0.5; margin-right: 12px; }
 
-        /* ----- 6. DETAIL BARCODE J-POP ----- */
+        /* ----- DETAIL BARCODE J-POP ----- */
         .bottom-barcode-area {
             margin-top: 40px; padding-top: 20px;
             border-top: 1px dashed var(--ink-black);
@@ -142,7 +140,6 @@
 </head>
 <body>
 
-    <!-- Barisan Kata Renggang Latar Belakang ala Gambar Clairo -->
     <div class="ambient-text-top">
         <div>made by seur</div>
         <div>7.2002</div>
@@ -154,40 +151,41 @@
     <div class="container">
         <div class="vintage-card">
             
-            <!-- Header Atas Kupon Tiket Klasik -->
             <div class="ticket-header">
                 <div>OPUS NO. 12 / TKJ</div>
                 <div>★ 2026.08.23 ★</div>
                 <div>RAISA.QDRNA</div>
             </div>
 
-            <!-- Bingkai Foto Instax Polaroid -->
+            <!-- Foto Polaroid -->
             <div class="photo-frame">
                 <img src="me.jpg" alt="Raisa Qadarina" class="avatar">
             </div>
 
-            <!-- Tipografi Judul Sampul Album -->
-            <h1>She Blinks</h1>
-            <div class="cursive-sub">in curses & glitter</div>
+            <!-- Nama dan Subtitle Positif -->
+            <h1>Raisa Qadarina</h1>
+            <div class="cursive-sub">the art of chasing dreams</div>
             
-            <!-- Efek Ketik Jurnal Mesin Tik Otomatis -->
-            <div class="typewriter-badge" id="tw"></div>
+            <!-- Tempat Efek Mesin Ketik Otomatis Berjalan -->
+            <div class="typewriter-badge" id="typewriter"></div>
 
+            <!-- Susunan Urutan Daftar Tombol -->
             <div class="track-list">
-                <a href="https://www.linkedin.com/in/raisa-qadarina-6118b1406" target="_blank" class="track-item">
+                <a href="https://linkedin.com" target="_blank" class="track-item">
                     <span><span class="track-index">01 /</span> CONNECT ON LINKEDIN</span>
                     <span>3:15 ➔</span>
                 </a>
-                <a href="https://instagram.com/isaqdrna" target="_blank" class="track-item">
-                    <span><span class="track-index">02 /</span> BE MY PAL</span>
+                <a href="https://instagram.com" target="_blank" class="track-item">
+                    <span><span class="track-index">02 /</span> FOLLOW MY INSTAGRAM</span>
                     <span>2:49 ➔</span>
                 </a>
-                <a href="https://chat.whatsapp.com/Ku4OwUBBp3gAVztifM4EfP" target="_blank" class="track-item">
+                <a href="https://whatsapp.com" target="_blank" class="track-item">
                     <span><span class="track-index">03 /</span> STORE: ROBUX & PREM APPS</span>
                     <span>3:29 ➔</span>
                 </a>
             </div>
-            
+
+            <!-- Sektor Barcode Bawah -->
             <div class="bottom-barcode-area">
                 <div class="barcode-lines">
                     <div class="bar thick"></div><div class="bar thin"></div><div class="bar"></div>
@@ -197,24 +195,43 @@
                 </div>
                 <div class="stamp-credit">
                     LOOK LONG ENOUGH,<br>
-                    AND YOU'LL FORGET YOUR NAME.
+                    AND YOU'LL FIND YOUR LIGHT.
                 </div>
             </div>
             
         </div>
     </div>
 
+    <!-- LOGIKA PEMROGRAMAN JAVASCRIPT ANIMASI DAN INTERAKSI -->
     <script>
-        // --- SCRIPT 1. EFEK KETIK KATA RETRO ---
-        const lyrics = ["EACH LASH A SPELL...", "EACH GLITTERING STONE...", "A TRAPPED SCREAM.", "SHE BLINKS IN CURSES."];
-        let pIdx = 0, cIdx = 0; const el = document.getElementById("tw");
+        // --- SCRIPT 1. EFEK KETIK KATA RETRO POSITIVE VIBES ---
+        const lyrics = [
+            "EACH DAY A NEW SPELL...",
+            "EACH GLITTERING STONE A PROMISE...",
+            "A BEAUTIFUL DREAM IN MOTION...",
+            "SHE BLINKS IN GLOW & LIGHT."
+        ];
+        let pIdx = 0, cIdx = 0; 
+        const el = document.getElementById("typewriter");
+
         function type() {
-            if (cIdx < lyrics[pIdx].length) { el.textContent += lyrics[pIdx].charAt(cIdx); cIdx++; setTimeout(type, 85); } 
-            else { setTimeout(erase, 2200); }
+            if (cIdx < lyrics[pIdx].length) { 
+                el.textContent += lyrics[pIdx].charAt(cIdx); 
+                cIdx++; 
+                setTimeout(type, 85); 
+            } else { 
+                setTimeout(erase, 2200); 
+            }
         }
         function erase() {
-            if (cIdx > 0) { el.textContent = lyrics[pIdx].substring(0, cIdx - 1); cIdx--; setTimeout(erase, 35); } 
-            else { pIdx = (pIdx + 1) % lyrics.length; setTimeout(type, 400); }
+            if (cIdx > 0) { 
+                el.textContent = lyrics[pIdx].substring(0, cIdx - 1); 
+                cIdx--; 
+                setTimeout(erase, 35); 
+            } else { 
+                pIdx = (pIdx + 1) % lyrics.length; 
+                setTimeout(type, 400); 
+            }
         }
         setTimeout(type, 400);
 
