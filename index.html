@@ -6,11 +6,10 @@
     <title>The Art of Raisa - Portfolio</title>
     <style>
         :root {
-            --bg-color: #f3e9dc;
-            --pink-base: #f5ccd4;
-            --pink-accent: #e295a5;
-            --text-dark: #3a2329;
-            --border-style: 2px dashed #e295a5;
+            --bg-color: #f7ebec;
+            --pink-base: #f7cbd4;
+            --pink-accent: #e597a7;
+            --text-dark: #3a2327;
         }
 
         body {
@@ -19,99 +18,76 @@
             color: var(--text-dark);
             margin: 0; padding: 0;
             display: flex; justify-content: center; align-items: center;
-            min-height: 100vh; overflow-x: hidden; position: relative;
+            min-height: 100vh; overflow: hidden; position: relative;
         }
 
-        /* ----- EFEK NOISE GRAIN (Tekstur Vintage Pada Layar) ----- */
+        /* ----- EFEK GRAIN/NOISE SEPERTI RETRO POSTER ----- */
         body::before {
             content: ""; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            opacity: 0.04; pointer-events: none; z-index: 9999;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://w3.org id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05; pointer-events: none; z-index: 999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://w3.org id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
         }
 
-        /* ----- ANIMASI SAKURA KERTAS BERGUGURAN ----- */
         #sakura-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+        .container { position: relative; z-index: 2; width: 90%; max-width: 430px; }
 
-        .container { position: relative; z-index: 2; width: 90%; max-width: 440px; margin: 40px 0; }
-
-        /* ----- KARTU UTAMA GAYA KLASIK JURNAL MUSIK ----- */
+        /* ----- KARTU UTAMA GAYA JURNAL MUSIK ----- */
         .journal-card {
-            background: #fffdfa;
+            background: #fffdfb;
             border: 3px solid var(--text-dark);
-            border-radius: 4px;
-            padding: 30px 20px;
+            border-radius: 2px;
+            padding: 35px 20px;
             box-shadow: 12px 12px 0px var(--pink-accent);
-            animation: cardEntrance 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-            position: relative;
+            text-align: center;
+            animation: cardEntrance 1s ease-out;
         }
 
         @keyframes cardEntrance {
-            0% { opacity: 0; transform: translateY(40px) rotate(-2deg); }
+            0% { opacity: 0; transform: translateY(30px) rotate(-1deg); }
             100% { opacity: 1; transform: translateY(0) rotate(0deg); }
         }
 
-        /* Header Gaya Tiket Kereta / Label Rekaman */
-        .header-banner {
+        .header-ticket {
             border-bottom: 2px dashed var(--text-dark);
-            padding-bottom: 15px; margin-bottom: 25px;
-            display: flex; justify-content: space-between; align-items: center;
-            font-size: 11px; font-weight: bold; text-transform: uppercase;
+            padding-bottom: 12px; margin-bottom: 25px;
+            display: flex; justify-content: space-between; font-size: 11px; font-weight: bold;
         }
 
-        /* Bingkai Foto Gaya Instax / Polaroid Frame */
-        .polaroid-frame {
-            background: white;
-            padding: 12px 12px 25px 12px;
-            border: 2px solid var(--text-dark);
-            box-shadow: 5px 5px 0px rgba(0,0,0,0.05);
-            display: inline-block; margin-bottom: 20px;
-            transform: rotate(-1.5deg);
-            transition: transform 0.4s ease;
+        /* Bingkai Foto Instax / Polaroid */
+        .polaroid {
+            background: white; padding: 12px 12px 25px 12px;
+            border: 2px solid var(--text-dark); display: inline-block;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.04);
+            transform: rotate(-1.5deg); transition: transform 0.3s ease;
+            margin-bottom: 20px;
         }
-        .polaroid-frame:hover { transform: rotate(1.5deg) scale(1.03); }
+        .polaroid:hover { transform: rotate(1deg) scale(1.03); }
+        .avatar { width: 160px; height: 160px; object-fit: cover; border: 2px solid var(--text-dark); }
 
-        .avatar {
-            width: 160px; height: 160px; object-fit: cover;
-            border: 2px solid var(--text-dark); filter: contrast(1.05) sepia(0.15);
-        }
-
-        /* ----- TIPOGRAFI RETRO ----- */
-        h1 {
-            font-family: 'Georgia', serif; font-style: italic;
-            color: var(--text-dark); margin: 5px 0; font-size: 34px; font-weight: 400;
-        }
-        .cursive-title {
-            font-family: 'Georgia', serif; font-style: italic;
-            color: var(--pink-dark); font-size: 20px; margin-bottom: 15px;
-        }
-        .typewriter-badge {
-            font-size: 13px; font-weight: bold; background: var(--pink-base);
-            padding: 4px 12px; border: 1px solid var(--text-dark);
-            display: inline-block; margin-bottom: 25px;
+        h1 { font-family: 'Georgia', serif; font-style: italic; margin: 5px 0; font-size: 32px; font-weight: 400; }
+        .cursive { font-family: 'Georgia', serif; font-style: italic; color: #b55266; font-size: 18px; margin-bottom: 15px; }
+        
+        .badge-type {
+            font-size: 12px; font-weight: bold; background: var(--pink-base);
+            padding: 5px 15px; border: 1.5px solid var(--text-dark);
+            display: inline-block; margin-bottom: 25px; min-height: 16px;
         }
 
-        /* ----- TOMBOL GAYA DAFTAR TRACK ALBUM (RETRO BUTTON) ----- */
-        .track-list { display: flex; flex-direction: column; gap: 10px; text-align: left; }
-
+        /* ----- TOMBOL TRACK LIST MUSIK VINTAGE ----- */
+        .track-list { display: flex; flex-direction: column; gap: 10px; }
         .track-item {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 12px 15px; background: #fffdfa; border: 2px solid var(--text-dark);
+            display: flex; justify-content: space-between; padding: 12px 15px;
+            background: #fffdfb; border: 2px solid var(--text-dark);
             color: var(--text-dark); text-decoration: none; font-weight: bold; font-size: 13px;
             transition: all 0.2s ease; cursor: pointer;
         }
-
         .track-item:hover {
-            background: var(--pink-base);
-            transform: translateX(5px);
+            background: var(--pink-base); transform: translateX(4px);
             box-shadow: -4px 4px 0px var(--text-dark);
         }
+        .track-num { opacity: 0.5; margin-right: 8px; }
 
-        .track-num { font-size: 11px; opacity: 0.6; margin-right: 10px; }
-
-        .footer-stamp {
-            margin-top: 30px; font-size: 10px; text-transform: uppercase;
-            letter-spacing: 1px; opacity: 0.7; border-top: 1px solid #ddd; padding-top: 15px;
-        }
+        .stamp { margin-top: 30px; font-size: 10px; opacity: 0.6; border-top: 1px solid #eee; padding-top: 15px; }
     </style>
 </head>
 <body>
@@ -120,84 +96,76 @@
 
     <div class="container">
         <div class="journal-card">
-            
-            <!-- Atas Kartu ala Tiket/Kupon Vintage -->
-            <div class="header-banner">
-                <div>No. 012 / TKJ</div>
+            <div class="header-ticket">
+                <div>TRACK NO. 12 / TKJ</div>
                 <div>★ 2026.08.23 ★</div>
                 <div>RAISA.QDRNA</div>
             </div>
 
-            <!-- Bingkai Foto Frame Polaroid Klasik -->
-            <div class="polaroid-frame">
+            <div class="polaroid">
                 <img src="me.jpg" alt="Raisa Qadarina" class="avatar">
             </div>
 
-            <!-- Bagian Teks Judul Gaya Estetik Album Cover -->
             <h1>Raisa Qadarina</h1>
-            <div class="cursive-title">the art of entrepreneurship</div>
+            <div class="cursive">the art of loving & business</div>
             
-            <div class="typewriter-badge" id="typewriter"></div>
+            <!-- Efek Ketik otomatis kalimat puitis dari gambarmu -->
+            <div class="badge-type" id="typewriter"></div>
 
-            <!-- Menu Interaktif Berbentuk Track List Musik -->
             <div class="track-list">
                 <a href="https://whatsapp.com" target="_blank" class="track-item">
-                    <span><span class="track-num">01</span> STORE.ROBUX_PREM_APPS</span>
+                    <span><span class="track-num">01</span> STORE: ROBUX & APPS</span>
                     <span>3:29 ➔</span>
                 </a>
                 <a href="https://linkedin.com" target="_blank" class="track-item">
-                    <span><span class="track-num">02</span> CONNECT_ON_LINKEDIN</span>
+                    <span><span class="track-num">02</span> CONNECT ON LINKEDIN</span>
                     <span>3:15 ➔</span>
                 </a>
                 <a href="https://instagram.com" target="_blank" class="track-item">
-                    <span><span class="track-num">03</span> FOLLOW_MY_INSTAGRAM</span>
+                    <span><span class="track-num">03</span> FOLLOW INSTAGRAM</span>
                     <span>2:49 ➔</span>
                 </a>
-                <div class="track-item" onclick="triggerMagic()">
-                    <span><span class="track-num">04</span> CLICK_FOR_SURPRISE</span>
+                <div class="track-item" onclick="magic()">
+                    <span><span class="track-num">04</span> CLICK FOR SURPRISE</span>
                     <span>0:40 ★</span>
                 </div>
             </div>
 
-            <div class="footer-stamp">
-                MADE BY RAISA • POWERED BY GITHUB PAGES • ALL RIGHTS RESERVED
-            </div>
-            
+            <div class="stamp">MADE BY RAISA • POWERED BY GITHUB PAGES</div>
         </div>
     </div>
 
     <script>
-        // --- 1. EFEK KETIK KATA RETRO ---
-        const phrases = ["EACH LASH A SPELL...", "EACH GLITTERING STONE...", "LOOK LONG ENOUGH...", "AND YOU'LL FORGET YOUR NAME."];
-        let pIdx = 0, cIdx = 0; const target = document.getElementById("typewriter");
+        // Kumpulan kata-kata estetik dari gambar referensimu
+        const phrases = ["EACH LASH A SPELL...", "EACH GLITTERING STONE...", "LOOK LONG ENOUGH...", "SHE BLINKS IN CURSES..."];
+        let pIdx = 0, cIdx = 0; const el = document.getElementById("typewriter");
         function type() {
-            if (cIdx < phrases[pIdx].length) { target.textContent += phrases[pIdx].charAt(cIdx); cIdx++; setTimeout(type, 80); } 
-            else { setTimeout(erase, 2500); }
+            if (cIdx < phrases[pIdx].length) { el.textContent += phrases[pIdx].charAt(cIdx); cIdx++; setTimeout(type, 80); } 
+            else { setTimeout(erase, 2200); }
         }
         function erase() {
-            if (cIdx > 0) { target.textContent = phrases[pIdx].substring(0, cIdx - 1); cIdx--; setTimeout(erase, 30); } 
+            if (cIdx > 0) { el.textContent = phrases[pIdx].substring(0, cIdx - 1); cIdx--; setTimeout(erase, 35); } 
             else { pIdx = (pIdx + 1) % phrases.length; setTimeout(type, 400); }
         }
         setTimeout(type, 400);
 
-        // --- 2. ANIMASI KELOPAK SAKURA GAYA SKETSA ---
         const canvas = document.getElementById('sakura-canvas'); const ctx = canvas.getContext('2d'); let petals = [];
         function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         window.addEventListener('resize', resize); resize();
 
-        class MutedPetal {
+        class Petal {
             constructor() { this.reset(); this.y = Math.random() * canvas.height; }
-            reset() { this.x = Math.random() * canvas.width; this.y = -20; this.size = Math.random() * 6 + 5; this.sy = Math.random() * 1.0 + 0.6; this.sx = Math.random() * 1.0 - 0.2; this.a = Math.random() * 360; this.sp = Math.random() * 1.2 - 0.6; }
+            reset() { this.x = Math.random() * canvas.width; this.y = -20; this.size = Math.random() * 6 + 5; this.sy = Math.random() * 0.9 + 0.6; this.sx = Math.random() * 0.8 - 0.2; this.a = Math.random() * 360; this.sp = Math.random() * 1.2 - 0.6; }
             update() { this.y += this.sy; this.x += this.sx; this.a += this.sp; if (this.y > canvas.height || this.x > canvas.width) this.reset(); }
-            draw() { ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.a * Math.PI / 180); ctx.fillStyle = '#f5ccd4'; ctx.beginPath(); ctx.ellipse(0, 0, this.size, this.size / 1.7, 0, 0, 2 * Math.PI); ctx.fill(); ctx.restore(); }
+            draw() { ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.a * Math.PI / 180); ctx.fillStyle = '#f9cbd4'; ctx.beginPath(); ctx.ellipse(0, 0, this.size, this.size / 1.7, 0, 0, 2 * Math.PI); ctx.fill(); ctx.restore(); }
         }
-        for (let i = 0; i < 30; i++) petals.push(new MutedPetal());
+        for (let i = 0; i < 30; i++) petals.push(new Petal());
         function anim() { ctx.clearRect(0, 0, canvas.width, canvas.height); petals.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(anim); }
         anim();
 
-        function triggerMagic() {
-            for (let i = 0; i < 20; i++) { let b = new MutedPetal(); b.x = window.innerWidth / 2 + (Math.random() * 120 - 60); b.y = window.innerHeight / 2 + (Math.random() * 120 - 60); b.sy = Math.random() * 5 - 2.5; b.sx = Math.random() * 5 - 2.5; petals.push(b); }
-            alert("🌸 She blinks in curses... Selamat berinteraksi dengan dunia digital Raisa!");
+        function magic() {
+            for (let i = 0; i < 20; i++) { let b = new Petal(); b.x = window.innerWidth / 2 + (Math.random() * 120 - 60); b.y = window.innerHeight / 2 + (Math.random() * 120 - 60); b.sy = Math.random() * 5 - 2.5; b.sx = Math.random() * 5 - 2.5; petals.push(b); }
+            alert("🌸 Perfect is someone elses idea... Selamat menikmati websitemu!");
         }
     </script>
 </body>
