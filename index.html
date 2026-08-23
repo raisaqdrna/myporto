@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio Interaktif - Raisa Qadarina</title>
+    <title>Personal Portfolio - Raisa Qadarina</title>
     <style>
         :root {
             --pink-light: #fff0f3;
             --pink-main: #ff85a2;
             --pink-dark: #f6416c;
-            --glass-bg: rgba(255, 255, 255, 0.45);
-            --glass-border: rgba(255, 133, 162, 0.25);
+            --glass-bg: rgba(255, 255, 255, 0.5);
+            --glass-border: rgba(255, 133, 162, 0.3);
         }
 
         body {
             font-family: 'Poppins', 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #ffe5ec, #ffc2d1, #ffe5ec);
             background-size: 400% 400%;
-            animation: gradientBg 15s ease infinite;
+            animation: gradientBg 12s ease infinite;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow-x: hidden;
+            overflow: hidden;
             position: relative;
         }
 
@@ -34,7 +34,7 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Canvas untuk Animasi Kelopak Sakura Berjatuhan */
+        /* Canvas Latar Belakang Hujan Sakura */
         #sakura-canvas {
             position: fixed;
             top: 0;
@@ -49,37 +49,34 @@
             position: relative;
             z-index: 2;
             width: 90%;
-            max-width: 500px;
-            perspective: 1000px;
+            max-width: 450px;
         }
 
-        /* Kartu Efek Kaca (Glassmorphism) */
+        /* Kartu Profil Utama (Glassmorphism) */
         .main-card {
             background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 30px;
-            padding: 40px 30px;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 35px;
+            padding: 45px 30px;
             text-align: center;
             border: 2px solid var(--glass-border);
-            box-shadow: 0 20px 40px rgba(246, 65, 108, 0.15);
-            transform-style: preserve-3d;
-            transform: translateY(30px);
-            opacity: 0;
-            animation: fadeInUp 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            box-shadow: 0 20px 50px rgba(246, 65, 108, 0.15);
+            animation: cardFloat 4s ease-in-out infinite, fadeInUp 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.3s ease;
         }
 
-        .main-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(246, 65, 108, 0.25);
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         @keyframes fadeInUp {
-            to { transform: translateY(0); opacity: 1; }
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
-        /* Bingkai Foto Mengambang & Animasi Berputar Halus */
+        /* Bingkai Foto Profil Utama */
         .avatar-container {
             position: relative;
             width: 150px;
@@ -91,63 +88,65 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            border: 4px solid #fff;
+            border: 5px solid #fff;
             object-fit: cover;
             box-shadow: 0 10px 25px rgba(246, 65, 108, 0.2);
-            animation: floatAnimation 4s ease-in-out infinite;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        @keyframes floatAnimation {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-12px) rotate(3deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
+        .avatar:hover {
+            transform: scale(1.08) rotate(5deg);
         }
 
-        .avatar-decor {
+        .sparkle-decor {
             position: absolute;
-            font-size: 26px;
-            animation: spin 6s linear infinite;
+            font-size: 24px;
+            animation: pulse 2s infinite;
         }
 
-        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.2); opacity: 1; }
+        }
 
-        /* Teks Efek Mengetik Otomatis */
-        .typewriter-text {
+        /* Teks Berjalan / Mengetik Otomatis */
+        .typewriter-badge {
             background: #fff;
             color: var(--pink-dark);
             display: inline-block;
-            padding: 6px 18px;
+            padding: 6px 20px;
             border-radius: 50px;
             font-weight: 700;
-            font-size: 14px;
-            letter-spacing: 1px;
-            box-shadow: 0 5px 15px rgba(246, 65, 108, 0.1);
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 5px 15px rgba(246, 65, 108, 0.08);
             margin-bottom: 15px;
+            min-height: 20px;
         }
 
         h1 {
             color: #4a1521;
-            margin: 0 0 10px 0;
-            font-size: 32px;
+            margin: 0 0 8px 0;
+            font-size: 30px;
             font-weight: 800;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
-        p {
-            color: #7d4f5b;
-            font-size: 16px;
-            margin: 0 0 30px 0;
+        .subtitle {
+            color: #885560;
+            font-size: 15px;
+            margin: 0 0 35px 0;
             font-weight: 500;
+            letter-spacing: 0.3px;
         }
 
-        /* Tombol Interaktif dengan Efek Riak Gelombang */
+        /* Tombol-Tombol Aksi Interaktif */
         .button-group {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 14px;
         }
 
-        .animated-btn {
+        .action-btn {
             background: linear-gradient(135deg, var(--pink-main), var(--pink-dark));
             color: white;
             text-decoration: none;
@@ -155,114 +154,126 @@
             border-radius: 50px;
             font-weight: 700;
             font-size: 15px;
-            letter-spacing: 0.5px;
-            box-shadow: 0 8px 20px rgba(246, 65, 108, 0.3);
+            box-shadow: 0 8px 20px rgba(246, 65, 108, 0.25);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
             border: none;
             cursor: pointer;
+            text-align: center;
         }
 
-        .animated-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 30px rgba(246, 65, 108, 0.45);
+        .action-btn:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(246, 65, 108, 0.4);
             background: linear-gradient(135deg, var(--pink-dark), var(--pink-main));
         }
 
-        .animated-btn:active {
+        .action-btn:active {
             transform: scale(0.98);
+        }
+
+        .footer-credit {
+            font-size: 11px;
+            color: #b08890;
+            margin-top: 35px;
+            letter-spacing: 0.5px;
         }
     </style>
     <link href="https://googleapis.com" rel="stylesheet">
 </head>
 <body>
 
+    <!-- Area Animasi Hujan Kelopak Bunga Sakura -->
     <canvas id="sakura-canvas"></canvas>
 
     <div class="container">
         <div class="main-card">
             
             <div class="avatar-container">
-                <div class="avatar-decor" style="top: -10px; right: -10px;">✨</div>
-                <div class="avatar-decor" style="bottom: -5px; left: -10px;">🌸</div>
-                <!-- Membaca file me.png di GitHub kamu -->
-                <img src="me.png" alt="Foto Raisa" class="avatar" id="profile-img">
+                <div class="sparkle-decor" style="top: -10px; right: -5px;">✨</div>
+                <div class="sparkle-decor" style="bottom: -5px; left: -10px;">🌸</div>
+                <!-- Menghubungkan otomatis ke file me.jpg kamu -->
+                <img src="me.jpg" alt="Foto Raisa" class="avatar">
             </div>
 
-            <div class="typewriter-text" id="typewriter"></div>
+            <!-- Tempat teks mengetik otomatis muncul -->
+            <div class="typewriter-badge" id="typewriter"></div>
             
             <h1>Raisa Qadarina</h1>
-            <p>Alumni 12 TKJ | Web Developer Portfolio</p>
+            <p class="subtitle">Alumni 12 TKJ | Creative Cloud Showcase</p>
 
+            <!-- Tombol Interaktif Baru Tanpa Formulir Kaku -->
             <div class="button-group">
-                <button class="animated-btn" onclick="triggerMagic()">🌸 Klik Kejutan Efek!</button>
-                <a href="https://github.com" target="_blank" class="animated-btn" style="background: #4a1521;">✨ Kunjungi GitHub Saya</a>
+                <button class="action-btn" onclick="popSurprise()">🌸 Klik Hadiah Kejutan!</button>
+                <a href="https://github.com" target="_blank" class="action-btn" style="background: #4a1521; box-shadow: 0 8px 20px rgba(74, 21, 33, 0.25);">✨ Kunjungi GitHub Saya</a>
             </div>
+
+            <p class="footer-credit">Hosted via GitHub Pages • Crafted with 💖</p>
             
         </div>
     </div>
 
     <script>
-        // Efek Mengetik Otomatis (Typewriter)
-        const textArray = ["Selamat Datang!", "Website Portofolio Saya", "CyberPanel Praktikum", "Dibuat Dengan 💖"];
-        let textIndex = 0;
+        // --- 1. SCRIPT EFEK KETIK OTOMATIS (TYPEWRITER) ---
+        const phrases = ["Halo, Selamat Datang! ✨", "Welcome to My Sweet Room 💖", "Web Portofolio Kreatif", "Aktif 24 Jam Selamanya 🚀"];
+        let phraseIndex = 0;
         let charIndex = 0;
-        const typewriterElement = document.getElementById("typewriter");
+        const targetElement = document.getElementById("typewriter");
 
-        function type() {
-            if (charIndex < textArray[textIndex].length) {
-                typewriterElement.textContent += textArray[textIndex].charAt(charIndex);
+        function typeEffect() {
+            if (charIndex < phrases[phraseIndex].length) {
+                targetElement.textContent += phrases[phraseIndex].charAt(charIndex);
                 charIndex++;
-                setTimeout(type, 100);
+                setTimeout(typeEffect, 90);
             } else {
-                setTimeout(erase, 2000);
+                setTimeout(eraseEffect, 2200);
             }
         }
 
-        function erase() {
+        function eraseEffect() {
             if (charIndex > 0) {
-                typewriterElement.textContent = textArray[textIndex].substring(0, charIndex - 1);
+                targetElement.textContent = phrases[phraseIndex].substring(0, charIndex - 1);
                 charIndex--;
-                setTimeout(erase, 50);
+                setTimeout(eraseEffect, 40);
             } else {
-                textIndex = (textIndex + 1) % textArray.length;
-                setTimeout(type, 500);
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                setTimeout(typeEffect, 400);
             }
         }
-        document.addEventListener("DOMContentLoaded", () => setTimeout(type, 500));
+        document.addEventListener("DOMContentLoaded", () => setTimeout(typeEffect, 400));
 
-        // Logika Animasi Kelopak Sakura Berjatuhan (Canvas)
+
+        // --- 2. SCRIPT HUJAN SAKURA REALTIME (CANVAS) ---
         const canvas = document.getElementById('sakura-canvas');
         const ctx = canvas.getContext('2d');
         let petals = [];
 
-        function resizeCanvas() {
+        function setCanvasSize() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
+        window.addEventListener('resize', setCanvasSize);
+        setCanvasSize();
 
-        class Petal {
+        class SakuraPetal {
             constructor() {
+                this.reset();
+                this.y = Math.random() * canvas.height; // Sebaran awal merata di layar
+            }
+            reset() {
                 this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height - canvas.height;
-                this.size = Math.random() * 8 + 6;
-                this.speedX = Math.random() * 1.5 + 0.5;
-                this.speedY = Math.random() * 1.5 + 1;
+                this.y = -20;
+                this.size = Math.random() * 7 + 6;
+                this.speedX = Math.random() * 1.2 + 0.4;
+                this.speedY = Math.random() * 1.2 + 0.8;
                 this.angle = Math.random() * 360;
-                this.spin = Math.random() * 2 - 1;
+                this.spin = Math.random() * 1.6 - 0.8;
             }
             update() {
                 this.y += this.speedY;
                 this.x += this.speedX;
                 this.angle += this.spin;
-                if (this.y > canvas.height) {
-                    this.y = -20;
-                    this.x = Math.random() * canvas.width;
+                if (this.y > canvas.height || this.x > canvas.width) {
+                    this.reset();
                 }
             }
             draw() {
@@ -271,30 +282,36 @@
                 ctx.rotate(this.angle * Math.PI / 180);
                 ctx.fillStyle = '#ffb3c6';
                 ctx.beginPath();
-                ctx.ellipse(0, 0, this.size, this.size / 2, 0, 0, 2 * Math.PI);
+                ctx.ellipse(0, 0, this.size, this.size / 1.8, 0, 0, 2 * Math.PI);
                 ctx.fill();
                 ctx.restore();
             }
         }
 
-        for (let i = 0; i < 35; i++) {
-            petals.push(new Petal());
+        // Membuat 40 kelopak bunga sakura di background
+        for (let i = 0; i < 40; i++) {
+            petals.push(new SakuraPetal());
         }
 
-        function animate() {
+        function runAnimation() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             petals.forEach(petal => {
                 petal.update();
                 petal.draw();
             });
-            requestAnimationFrame(animate);
+            requestAnimationFrame(runAnimation);
+        // --- 3. LOGIKA INTERAKSI TOMBOL KEJUTAN ---
+        function popSurprise() {
+            for (let i = 0; i < 20; i++) {
+                let burst = new SakuraPetal();
+                burst.x = window.innerWidth / 2 + (Math.random() * 160 - 80);
+                burst.y = window.innerHeight / 2 + (Math.random() * 160 - 80);
+                burst.speedY = Math.random() * 6 - 3;
+                burst.speedX = Math.random() * 6 - 3;
+                petals.push(burst);
+            }
+            alert("Yeay! 🌸 Kamu berhasil memicu ledakan kelopak bunga sakura di layar!");
         }
-        animate();
-
-        // Fungsi Kejutan saat Tombol Di-klik
-        function triggerMagic() {
-            for (let i = 0; i < 15; i++) {
-                let burstPetal = new Petal();
-                burstPetal.y = window.innerHeight / 2 + (Math.random() * 200 - 100);
-                burstPetal.x = window.innerWidth / 2 + (Math.random() * 200 - 100);
-                burstPetal.speedY = Math.random() * 6 - 3;
+    </script>
+</body>
+</html>
