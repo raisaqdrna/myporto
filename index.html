@@ -79,18 +79,21 @@
 <body>
 
     <header>
-        <img src="https://unsplash.com" alt="Foto Raisa" class="avatar">
+        <!-- Otomatis membaca file foto me.png yang kamu upload ke GitHub -->
+        <img src="me.png" alt="Foto Raisa" class="avatar" onerror="this.src='https://unsplash.com';">
         <h1 style="margin: 5px 0;">Raisa Darina</h1>
         <p style="margin: 0; opacity: 0.9;">Alumni 12 TKJ | Praktikum Web & Database Server</p>
     </header>
 
     <div class="container">
         
+        <!-- Bagian Informasi Projek -->
         <div class="card">
             <h2>Tentang Projek Ini</h2>
             <p>Web ini merupakan rekonstruksi tugas praktikum <strong>CyberPanel ASJ</strong> dan <strong>CRUD Database Server</strong>. Kode backend PHP telah dimigrasikan ke Client-Side JavaScript agar dapat dijalankan secara interaktif dan responsif langsung melalui cloud hosting GitHub Pages.</p>
         </div>
 
+        <!-- Aplikasi Interaktif CRUD -->
         <div class="card">
             <h2>Aplikasi Input Data Siswa (Interaktif)</h2>
             <form id="studentForm">
@@ -122,6 +125,7 @@
                         </tr>
                     </thead>
                     <tbody id="studentTableBody">
+                        <!-- Data otomatis masuk ke sini -->
                     </tbody>
                 </table>
             </div>
@@ -129,6 +133,7 @@
 
     </div>
 
+    <!-- Sistem Logika CRUD Client-Side -->
     <script>
         let students = JSON.parse(localStorage.getItem('siswa_data')) || [
             {id: 1, nama: 'Budi Hartono', email: 'budi@tkj.net', komentar: 'Praktikum CyberPanel seru, tapi pusing dikit.'},
@@ -165,9 +170,11 @@
             const komentar = document.getElementById('komentar').value;
 
             if (id) {
+                // Proses Edit/Update
                 students = students.map(s => s.id == id ? {id: parseInt(id), nama, email, komentar} : s);
                 submitBtn.innerText = 'Simpan Data';
             } else {
+                // Proses Tambah Baru
                 const newStudent = { id: Date.now(), nama, email, komentar };
                 students.unshift(newStudent);
             }
