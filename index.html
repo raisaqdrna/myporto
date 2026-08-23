@@ -9,7 +9,7 @@
             --pink-light: #fff0f3;
             --pink-main: #ff85a2;
             --pink-dark: #f6416c;
-            --glass-bg: rgba(255, 255, 255, 0.5);
+            --glass-bg: rgba(255, 255, 255, 0.55);
             --glass-border: rgba(255, 133, 162, 0.3);
         }
 
@@ -34,7 +34,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Canvas Latar Belakang Hujan Sakura */
         #sakura-canvas {
             position: fixed;
             top: 0;
@@ -58,7 +57,7 @@
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border-radius: 35px;
-            padding: 45px 30px;
+            padding: 40px 25px;
             text-align: center;
             border: 2px solid var(--glass-border);
             box-shadow: 0 20px 50px rgba(246, 65, 108, 0.15);
@@ -76,12 +75,12 @@
             100% { opacity: 1; transform: translateY(0); }
         }
 
-        /* Bingkai Foto Profil Utama */
+        /* Bingkai Foto Profil */
         .avatar-container {
             position: relative;
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 25px auto;
+            width: 135px;
+            height: 135px;
+            margin: 0 auto 20px auto;
         }
 
         .avatar {
@@ -126,44 +125,47 @@
 
         h1 {
             color: #4a1521;
-            margin: 0 0 8px 0;
-            font-size: 30px;
+            margin: 0 0 5px 0;
+            font-size: 28px;
             font-weight: 800;
         }
 
         .subtitle {
             color: #885560;
-            font-size: 15px;
-            margin: 0 0 35px 0;
+            font-size: 14px;
+            margin: 0 0 25px 0;
             font-weight: 500;
-            letter-spacing: 0.3px;
         }
 
-        /* Tombol-Tombol Aksi Interaktif */
+        /* Tombol-Tombol Link Sosial Media & Toko */
         .button-group {
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 12px;
         }
 
         .action-btn {
             background: linear-gradient(135deg, var(--pink-main), var(--pink-dark));
             color: white;
             text-decoration: none;
-            padding: 15px 25px;
+            padding: 14px 20px;
             border-radius: 50px;
             font-weight: 700;
-            font-size: 15px;
-            box-shadow: 0 8px 20px rgba(246, 65, 108, 0.25);
+            font-size: 14px;
+            box-shadow: 0 6px 15px rgba(246, 65, 108, 0.2);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: none;
             cursor: pointer;
             text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
         }
 
         .action-btn:hover {
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 15px 30px rgba(246, 65, 108, 0.4);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(246, 65, 108, 0.35);
             background: linear-gradient(135deg, var(--pink-dark), var(--pink-main));
         }
 
@@ -174,7 +176,7 @@
         .footer-credit {
             font-size: 11px;
             color: #b08890;
-            margin-top: 35px;
+            margin-top: 30px;
             letter-spacing: 0.5px;
         }
     </style>
@@ -191,7 +193,7 @@
             <div class="avatar-container">
                 <div class="sparkle-decor" style="top: -10px; right: -5px;">✨</div>
                 <div class="sparkle-decor" style="bottom: -5px; left: -10px;">🌸</div>
-                <!-- Menghubungkan otomatis ke file me.jpg kamu -->
+                <!-- Menghubungkan ke file me.jpg kamu -->
                 <img src="me.jpg" alt="Foto Raisa" class="avatar">
             </div>
 
@@ -199,12 +201,14 @@
             <div class="typewriter-badge" id="typewriter"></div>
             
             <h1>Raisa Qadarina</h1>
-            <p class="subtitle">Alumni 12 TKJ | Creative Cloud Showcase</p>
+            <p class="subtitle">Alumni 12 TKJ | IT Student & Entrepreneur</p>
 
-            <!-- Tombol Interaktif Baru Tanpa Formulir Kaku -->
+            <!-- Tombol Interaktif Dengan Sosial Mediamu -->
             <div class="button-group">
+                <a href="https://whatsapp.com" target="_blank" class="action-btn" style="background: linear-gradient(135deg, #25D366, #128C7E); box-shadow: 0 6px 15px rgba(37, 211, 102, 0.3);">🛍️ Store: Robux & Premium Apps (Auto Bot)</a>
+                <a href="https://linkedin.com" target="_blank" class="action-btn" style="background: linear-gradient(135deg, #0A66C2, #004182); box-shadow: 0 6px 15px rgba(10, 102, 194, 0.3);">💼 Connect on LinkedIn</a>
+                <a href="https://instagram.com" target="_blank" class="action-btn" style="background: linear-gradient(135deg, #fccc63, #fbad50, #cd486b, #4c68d7); box-shadow: 0 6px 15px rgba(205, 72, 107, 0.3);">📸 Follow My Instagram</a>
                 <button class="action-btn" onclick="popSurprise()">🌸 Klik Hadiah Kejutan!</button>
-                <a href="https://github.com" target="_blank" class="action-btn" style="background: #4a1521; box-shadow: 0 8px 20px rgba(74, 21, 33, 0.25);">✨ Kunjungi GitHub Saya</a>
             </div>
 
             <p class="footer-credit">Hosted via GitHub Pages • Crafted with 💖</p>
@@ -214,7 +218,7 @@
 
     <script>
         // --- 1. SCRIPT EFEK KETIK OTOMATIS (TYPEWRITER) ---
-        const phrases = ["Halo, Selamat Datang! ✨", "Welcome to My Sweet Room 💖", "Web Portofolio Kreatif", "Aktif 24 Jam Selamanya 🚀"];
+        const phrases = ["Halo, Selamat Datang! ✨", "Welcome to My Room 💖", "Robux & App Store Vendor 🛍️", "Aktif 24 Jam Selamanya 🚀"];
         let phraseIndex = 0;
         let charIndex = 0;
         const targetElement = document.getElementById("typewriter");
@@ -257,7 +261,7 @@
         class SakuraPetal {
             constructor() {
                 this.reset();
-                this.y = Math.random() * canvas.height; // Sebaran awal merata di layar
+                this.y = Math.random() * canvas.height;
             }
             reset() {
                 this.x = Math.random() * canvas.width;
@@ -282,36 +286,39 @@
                 ctx.rotate(this.angle * Math.PI / 180);
                 ctx.fillStyle = '#ffb3c6';
                 ctx.beginPath();
-                ctx.ellipse(0, 0, this.size, this.size / 1.8, 0, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.restore();
-            }
+            ctx.ellipse(0, 0, this.size, this.size / 1.8, 0, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.restore();
         }
+    }
 
-        // Membuat 40 kelopak bunga sakura di background
-        for (let i = 0; i < 40; i++) {
-            petals.push(new SakuraPetal());
-        }
+    for (let i = 0; i < 40; i++) {
+        petals.push(new SakuraPetal());
+    }
 
-        function runAnimation() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            petals.forEach(petal => {
-                petal.update();
-                petal.draw();
-            });
-            requestAnimationFrame(runAnimation);
-        // --- 3. LOGIKA INTERAKSI TOMBOL KEJUTAN ---
-        function popSurprise() {
-            for (let i = 0; i < 20; i++) {
-                let burst = new SakuraPetal();
-                burst.x = window.innerWidth / 2 + (Math.random() * 160 - 80);
-                burst.y = window.innerHeight / 2 + (Math.random() * 160 - 80);
-                burst.speedY = Math.random() * 6 - 3;
-                burst.speedX = Math.random() * 6 - 3;
-                petals.push(burst);
-            }
-            alert("Yeay! 🌸 Kamu berhasil memicu ledakan kelopak bunga sakura di layar!");
+    function runAnimation() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        petals.forEach(petal => {
+            petal.update();
+            petal.draw();
+        });
+        requestAnimationFrame(runAnimation);
+    }
+    runAnimation();
+
+
+    // --- 3. LOGIKA INTERAKSI TOMBOL KEJUTAN ---
+    function popSurprise() {
+        for (let i = 0; i < 25; i++) {
+            let burst = new SakuraPetal();
+            burst.x = window.innerWidth / 2 + (Math.random() * 160 - 80);
+            burst.y = window.innerHeight / 2 + (Math.random() * 160 - 80);
+            burst.speedY = Math.random() * 6 - 3;
+            burst.speedX = Math.random() * 6 - 3;
+            petals.push(burst);
         }
-    </script>
+        alert("Yeay! 🌸 Kamu berhasil memicu ledakan kelopak bunga sakura di layar!");
+    }
+</script>
 </body>
 </html>
