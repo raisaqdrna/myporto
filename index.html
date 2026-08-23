@@ -3,235 +3,298 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio & Aplikasi TKJ - Raisa Qadarina</title>
+    <title>Portofolio Interaktif - Raisa Qadarina</title>
     <style>
         :root {
-            --primary-pink: #ff748c;
-            --secondary-pink: #ffa3b1;
-            --bg-pink: #ffeef1;
-            --card-pink: #ffffff;
-            --text-dark: #662230;
+            --pink-light: #fff0f3;
+            --pink-main: #ff85a2;
+            --pink-dark: #f6416c;
+            --glass-bg: rgba(255, 255, 255, 0.45);
+            --glass-border: rgba(255, 133, 162, 0.25);
         }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-pink);
-            background-image: radial-gradient(var(--secondary-pink) 1px, transparent 0);
-            background-size: 24px 24px;
-            color: var(--text-dark);
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #ffe5ec, #ffc2d1, #ffe5ec);
+            background-size: 400% 400%;
+            animation: gradientBg 15s ease infinite;
             margin: 0;
             padding: 0;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
             min-height: 100vh;
-        }
-        
-        /* Background Efek Bunga Sakura Mengambang */
-        .decorations {
-            position: fixed; width: 100%; height: 100%; pointer-events: none; z-index: -1;
-        }
-        .flower { position: absolute; color: var(--primary-pink); opacity: 0.4; font-size: 20px; }
-
-        .container {
-            max-width: 650px;
-            width: 90%;
-            margin: 40px 0;
-        }
-
-        /* Card Utama Biodata */
-        .bio-card {
-            background: var(--card-pink);
-            border-radius: 24px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(255, 116, 140, 0.15);
-            border: 2px solid rgba(255, 163, 177, 0.3);
-            margin-bottom: 25px;
+            overflow-x: hidden;
             position: relative;
         }
+
+        @keyframes gradientBg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Canvas untuk Animasi Kelopak Sakura Berjatuhan */
+        #sakura-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            width: 90%;
+            max-width: 500px;
+            perspective: 1000px;
+        }
+
+        /* Kartu Efek Kaca (Glassmorphism) */
+        .main-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 30px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 2px solid var(--glass-border);
+            box-shadow: 0 20px 40px rgba(246, 65, 108, 0.15);
+            transform-style: preserve-3d;
+            transform: translateY(30px);
+            opacity: 0;
+            animation: fadeInUp 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .main-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(246, 65, 108, 0.25);
+        }
+
+        @keyframes fadeInUp {
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Bingkai Foto Mengambang & Animasi Berputar Halus */
+        .avatar-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 25px auto;
+        }
+
         .avatar {
-            width: 140px;
-            height: 140px;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            border: 5px solid #fff;
-            box-shadow: 0 5px 15px rgba(255, 116, 140, 0.2);
+            border: 4px solid #fff;
             object-fit: cover;
+            box-shadow: 0 10px 25px rgba(246, 65, 108, 0.2);
+            animation: floatAnimation 4s ease-in-out infinite;
+        }
+
+        @keyframes floatAnimation {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(3deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .avatar-decor {
+            position: absolute;
+            font-size: 26px;
+            animation: spin 6s linear infinite;
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* Teks Efek Mengetik Otomatis */
+        .typewriter-text {
+            background: #fff;
+            color: var(--pink-dark);
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(246, 65, 108, 0.1);
             margin-bottom: 15px;
         }
-        h1 { color: #cc435c; margin: 10px 0 5px 0; font-size: 28px; }
-        .welcome-title {
-            background: var(--bg-pink);
-            color: #cc435c;
-            display: inline-block;
-            padding: 8px 20px;
-            border-radius: 15px;
-            font-weight: bold;
-            margin: 15px 0;
-            font-size: 18px;
-        }
-        .tag-container {
-            display: flex; justify-content: center; gap: 10px; margin-top: 15px;
-        }
-        .tag {
-            background: var(--primary-pink); color: white; padding: 6px 15px;
-            border-radius: 20px; font-size: 13px; font-weight: bold;
+
+        h1 {
+            color: #4a1521;
+            margin: 0 0 10px 0;
+            font-size: 32px;
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
-        /* Card Form dan Tabel CRUD */
-        .crud-card {
-            background: var(--card-pink); border-radius: 24px; padding: 25px;
-            box-shadow: 0 10px 25px rgba(255, 116, 140, 0.1);
-            border: 2px solid rgba(255, 163, 177, 0.2);
+        p {
+            color: #7d4f5b;
+            font-size: 16px;
+            margin: 0 0 30px 0;
+            font-weight: 500;
         }
-        h2 { color: #cc435c; margin-top: 0; text-align: center; font-size: 20px; }
-        .form-group { margin-bottom: 15px; text-align: left; }
-        label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 14px; }
-        input, textarea {
-            width: 100%; padding: 12px; border: 1.5px solid #ffd0d7;
-            border-radius: 12px; box-sizing: border-box; font-family: inherit;
-            background-color: #fffbfb; color: var(--text-dark);
-        }
-        input:focus, textarea:focus { border-color: var(--primary-pink); outline: none; }
-        button {
-            background: linear-gradient(135deg, var(--primary-pink), #ff5370);
-            color: white; border: none; padding: 12px 25px; border-radius: 12px;
-            cursor: pointer; font-weight: bold; width: 100%; box-shadow: 0 5px 10px rgba(255, 116, 140, 0.2);
-        }
-        button:hover { opacity: 0.9; }
 
-        /* Tabel Pengganti PHP */
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px; }
-        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ffeef1; }
-        th { background-color: #fff5f6; color: #cc435c; font-weight: bold; }
-        .btn-edit { background: #f59e0b; padding: 5px 10px; font-size: 12px; width: auto; display: inline-block; margin-right: 3px;}
-        .btn-danger { background: #ef4444; padding: 5px 10px; font-size: 12px; width: auto; display: inline-block; }
+        /* Tombol Interaktif dengan Efek Riak Gelombang */
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .animated-btn {
+            background: linear-gradient(135deg, var(--pink-main), var(--pink-dark));
+            color: white;
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 20px rgba(246, 65, 108, 0.3);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .animated-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(246, 65, 108, 0.45);
+            background: linear-gradient(135deg, var(--pink-dark), var(--pink-main));
+        }
+
+        .animated-btn:active {
+            transform: scale(0.98);
+        }
     </style>
+    <link href="https://googleapis.com" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Taburan Bunga Hiasan -->
-    <div class="decorations">
-        <div class="flower" style="top: 15%; left: 10%;">🌸</div>
-        <div class="flower" style="top: 25%; right: 12%;">💮</div>
-        <div class="flower" style="top: 70%; left: 8%;">✨</div>
-        <div class="flower" style="top: 60%; right: 15%;">🌸</div>
-    </div>
+    <canvas id="sakura-canvas"></canvas>
 
     <div class="container">
-        <!-- Tampilan Atas Mirip Gambar Pink Kamu -->
-        <div class="bio-card">
-            <span>🌸 🌸 💮 🌸</span>
-            <!-- Membaca me.png kamu. Jika me.png belum ter-upload, otomatis pakai foto kucing lucu -->
-            <img src="me.png" alt="Foto Raisa" class="avatar" onerror="this.src='https://placekitten.com';">
+        <div class="main-card">
             
-            <div class="welcome-title">Selamat Datang di Website Saya!</div>
+            <div class="avatar-container">
+                <div class="avatar-decor" style="top: -10px; right: -10px;">✨</div>
+                <div class="avatar-decor" style="bottom: -5px; left: -10px;">🌸</div>
+                <!-- Membaca file me.png di GitHub kamu -->
+                <img src="me.png" alt="Foto Raisa" class="avatar" id="profile-img">
+            </div>
+
+            <div class="typewriter-text" id="typewriter"></div>
+            
             <h1>Raisa Qadarina</h1>
-            <p style="margin: 5px 0; font-weight: 500;">Kelas 12 TKJ</p>
-            <p style="font-size: 13px; color: #885560; font-style: italic;">Berhasil dikonfigurasi pada server GitHub Pages.</p>
+            <p>Alumni 12 TKJ | Web Developer Portfolio</p>
+
+            <div class="button-group">
+                <button class="animated-btn" onclick="triggerMagic()">🌸 Klik Kejutan Efek!</button>
+                <a href="https://github.com" target="_blank" class="animated-btn" style="background: #4a1521;">✨ Kunjungi GitHub Saya</a>
+            </div>
             
-            <div class="tag-container">
-                <div class="tag">🚀 TKJ 2026</div>
-                <div class="tag">🎯 CyberPanel</div>
-            </div>
-        </div>
-
-        <!-- Bagian Aplikasi Interaktif CRUD -->
-        <div class="crud-card">
-            <h2>Aplikasi CRUD Data Siswa (Interaktif)</h2>
-            <form id="studentForm">
-                <input type="hidden" id="studentId">
-                <div class="form-group">
-                    <label>Nama:</label>
-                    <input type="text" id="nama" required placeholder="Masukkan nama kamu">
-                </div>
-                <div class="form-group">
-                    <label>Email:</label>
-                    <input type="email" id="email" required placeholder="raisa@email.com">
-                </div>
-                <div class="form-group">
-                    <label>Komentar:</label>
-                    <textarea id="komentar" rows="3" required placeholder="Tulis komentar praktikum..."></textarea>
-                </div>
-                <button type="submit" id="btnSubmit">💖 Simpan Data</button>
-            </form>
-
-            <h3 style="margin-top: 25px; color: #cc435c; font-size: 16px;">✨ Data Siswa Terpajang:</h3>
-            <div style="overflow-x: auto;">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nama</th>
-                            <th>Email</th>
-                            <th>Komentar</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody id="studentTableBody"></tbody>
-                </table>
-            </div>
         </div>
     </div>
 
-    <!-- Sistem Logika Data Interaktif LocalStorage -->
     <script>
-        let students = JSON.parse(localStorage.getItem('siswa_data')) || [
-            {id: 1, nama: 'Raisa Qadarina', email: 'raisa@tkj.net', komentar: 'Tugas CRUD dan CyberPanel selesai!'},
-            {id: 2, nama: 'Budi Hartono', email: 'budi@tkj.net', komentar: 'Desain website barunya estetik banget.'}
-        ];
+        // Efek Mengetik Otomatis (Typewriter)
+        const textArray = ["Selamat Datang!", "Website Portofolio Saya", "CyberPanel Praktikum", "Dibuat Dengan 💖"];
+        let textIndex = 0;
+        let charIndex = 0;
+        const typewriterElement = document.getElementById("typewriter");
 
-        const form = document.getElementById('studentForm');
-        const tableBody = document.getElementById('studentTableBody');
-        const submitBtn = document.getElementById('btnSubmit');
-
-        function renderTable() {
-            tableBody.innerHTML = '';
-            students.forEach((student) => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td><strong>${student.nama}</strong></td>
-                    <td>${student.email}</td>
-                    <td>${student.komentar}</td>
-                    <td>
-                        <button class="btn-edit" onclick="editData(${student.id})">Edit</button>
-                        <button class="btn-danger" onclick="deleteData(${student.id})">Hapus</button>
-                    </td>
-                `;
-                tableBody.appendChild(tr);
-            });
-            localStorage.setItem('siswa_data', JSON.stringify(students));
-        }
-
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const id = document.getElementById('studentId').value;
-            const nama = document.getElementById('nama').value;
-            const email = document.getElementById('email').value;
-            const komentar = document.getElementById('komentar').value;
-
-            if (id) {
-                students = students.map(s => s.id == id ? {id: parseInt(id), nama, email, komentar} : s);
-                submitBtn.innerText = '💖 Simpan Data';
+        function type() {
+            if (charIndex < textArray[textIndex].length) {
+                typewriterElement.textContent += textArray[textIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, 100);
             } else {
-                const newStudent = { id: Date.now(), nama, email, komentar };
-                students.unshift(newStudent);
-            }
-            form.reset();
-            document.getElementById('studentId').value = '';
-            renderTable();
-        });
-
-        window.deleteData = function(id) {
-            if(confirm('Yakin hapus data ini?')) {
-                students = students.filter(s => s.id !== id);
-                renderTable();
+                setTimeout(erase, 2000);
             }
         }
 
-        window.editData = function(id) {
-            const student = students.find(s => s.id === id);
-            if(student) {
-                document.getElementById('studentId').value = student.id;
-                document.getElementById('nama').value = student.nama;
-                document.getElementById('email').value = student.email;
-                document.getElementById('komentar').value = student.komentar;
-                submitBtn.innerText = '✨ Update Data';
+        function erase() {
+            if (charIndex > 0) {
+                typewriterElement.textContent = textArray[textIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(erase, 50);
+            } else {
+                textIndex = (textIndex + 1) % textArray.length;
+                setTimeout(type, 500);
+            }
+        }
+        document.addEventListener("DOMContentLoaded", () => setTimeout(type, 500));
+
+        // Logika Animasi Kelopak Sakura Berjatuhan (Canvas)
+        const canvas = document.getElementById('sakura-canvas');
+        const ctx = canvas.getContext('2d');
+        let petals = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Petal {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height - canvas.height;
+                this.size = Math.random() * 8 + 6;
+                this.speedX = Math.random() * 1.5 + 0.5;
+                this.speedY = Math.random() * 1.5 + 1;
+                this.angle = Math.random() * 360;
+                this.spin = Math.random() * 2 - 1;
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.angle += this.spin;
+                if (this.y > canvas.height) {
+                    this.y = -20;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle * Math.PI / 180);
+                ctx.fillStyle = '#ffb3c6';
+                ctx.beginPath();
+                ctx.ellipse(0, 0, this.size, this.size / 2, 0, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < 35; i++) {
+            petals.push(new Petal());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            petals.forEach(petal => {
+                petal.update();
+                petal.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // Fungsi Kejutan saat Tombol Di-klik
+        function triggerMagic() {
+            for (let i = 0; i < 15; i++) {
+                let burstPetal = new Petal();
+                burstPetal.y = window.innerHeight / 2 + (Math.random() * 200 - 100);
+                burstPetal.x = window.innerWidth / 2 + (Math.random() * 200 - 100);
+                burstPetal.speedY = Math.random() * 6 - 3;
