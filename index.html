@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio & Aplikasi TKJ - Raisa Darina</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #3b82f6;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            width: 100%;
+            text-align: center;
+            padding: 40px 0;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+        .avatar {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 4px solid white;
+            object-fit: cover;
+            background-color: #ddd;
+            margin-bottom: 15px;
+        }
+        .container {
+            max-width: 800px;
+            width: 90%;
+            margin: 30px 0;
+        }
+        .card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+        }
+        h2 { color: var(--primary); margin-top: 0; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;}
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: 600; margin-bottom: 5px; }
+        input, textarea {
+            width: 100%; padding: 10px; border: 1px solid #cbd5e1;
+            border-radius: 6px; box-sizing: border-box; font-family: inherit;
+        }
+        button {
+            background-color: var(--secondary); color: white; border: none;
+            padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 600;
+        }
+        button:hover { background-color: var(--primary); }
+        table {
+            width: 100%; border-collapse: collapse; margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #e2e8f0; padding: 12px; text-align: left;
+        }
+        th { background-color: #f1f5f9; color: var(--primary); }
+        .btn-danger { background-color: #ef4444; }
+        .btn-danger:hover { background-color: #dc2626; }
+        .btn-edit { background-color: #f59e0b; margin-right: 5px;}
+        .btn-edit:hover { background-color: #d97706; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="https://unsplash.com" alt="Foto Raisa" class="avatar">
+        <h1 style="margin: 5px 0;">Raisa Darina</h1>
+        <p style="margin: 0; opacity: 0.9;">Alumni 12 TKJ | Praktikum Web & Database Server</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="card">
+            <h2>Tentang Projek Ini</h2>
+            <p>Web ini merupakan rekonstruksi tugas praktikum <strong>CyberPanel ASJ</strong> dan <strong>CRUD Database Server</strong>. Kode backend PHP telah dimigrasikan ke Client-Side JavaScript agar dapat dijalankan secara interaktif dan responsif langsung melalui cloud hosting GitHub Pages.</p>
+        </div>
+
+        <div class="card">
+            <h2>Aplikasi Input Data Siswa (Interaktif)</h2>
+            <form id="studentForm">
+                <input type="hidden" id="studentId">
+                <div class="form-group">
+                    <label>Nama:</label>
+                    <input type="text" id="nama" required placeholder="Masukkan nama siswa">
+                </div>
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" id="email" required placeholder="nama@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Komentar / Feedback:</label>
+                    <textarea id="komentar" rows="3" required placeholder="Tulis komentar praktikum..."></textarea>
+                </div>
+                <button type="submit" id="btnSubmit">Simpan Data</button>
+            </form>
+
+            <h3 style="margin-top: 30px; color: var(--primary);">Data Terpajang</h3>
+            <div style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Komentar</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let students = JSON.parse(localStorage.getItem('siswa_data')) || [
+            {id: 1, nama: 'Budi Hartono', email: 'budi@tkj.net', komentar: 'Praktikum CyberPanel seru, tapi pusing dikit.'},
+            {id: 2, nama: 'Siti Aminah', email: 'siti@tkj.net', komentar: 'Berhasil membuat domain dinamis lewat No-IP!'}
+        ];
+
+        const form = document.getElementById('studentForm');
+        const tableBody = document.getElementById('studentTableBody');
+        const submitBtn = document.getElementById('btnSubmit');
+
+        function renderTable() {
+            tableBody.innerHTML = '';
+            students.forEach((student) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${student.nama}</strong></td>
+                    <td>${student.email}</td>
+                    <td>${student.komentar}</td>
+                    <td>
+                        <button class="btn-edit" onclick="editData(${student.id})">Edit</button>
+                        <button class="btn-danger" onclick="deleteData(${student.id})">Hapus</button>
+                    </td>
+                `;
+                tableBody.appendChild(tr);
+            });
+            localStorage.setItem('siswa_data', JSON.stringify(students));
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const id = document.getElementById('studentId').value;
+            const nama = document.getElementById('nama').value;
+            const email = document.getElementById('email').value;
+            const komentar = document.getElementById('komentar').value;
+
+            if (id) {
+                students = students.map(s => s.id == id ? {id: parseInt(id), nama, email, komentar} : s);
+                submitBtn.innerText = 'Simpan Data';
+            } else {
+                const newStudent = { id: Date.now(), nama, email, komentar };
+                students.unshift(newStudent);
+            }
+            form.reset();
+            document.getElementById('studentId').value = '';
+            renderTable();
+        });
+
+        window.deleteData = function(id) {
+            if(confirm('Yakin ingin menghapus data ini?')) {
+                students = students.filter(s => s.id !== id);
+                renderTable();
+            }
+        }
+
+        window.editData = function(id) {
+            const student = students.find(s => s.id === id);
+            if(student) {
+                document.getElementById('studentId').value = student.id;
+                document.getElementById('nama').value = student.nama;
+                document.getElementById('email').value = student.email;
+                document.getElementById('komentar').value = student.komentar;
+                submitBtn.innerText = 'Update Data';
+            }
+        }
+
+        renderTable();
+    </script>
+</body>
+</html>
